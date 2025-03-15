@@ -35,7 +35,6 @@ QUEUE_RES queue_remove(char *str){
   if(queue_empty()) return QUEUE_RES_EMPTY;
 
   strcpy(str, queue[queue_start]);
-  strcpy(queue[queue_start], ""); // Not necessary
   queue_elements--;
   (queue_start == QUEUE_SIZE - 1) ? queue_start = 0 : queue_start++;
   return QUEUE_RES_OK;
@@ -55,7 +54,8 @@ QUEUE_RES queue_dump(char ***p_queue_list){
     (*p_queue_list)[i] = (char*) malloc(QUEUE_STRING_LENGTH * sizeof(char));
     if((*p_queue_list)[i] == NULL) return QUEUE_RES_MEM_ALLOC_ERR;
 
-    strcpy((*p_queue_list)[i], queue[queue_start]);
+    strcpy((*p_queue_list)[i], queue[temp_start]);
+    (temp_start == QUEUE_SIZE - 1) ? temp_start = 0 : temp_start++;
   }
 
   return QUEUE_RES_OK;
