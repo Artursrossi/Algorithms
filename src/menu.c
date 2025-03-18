@@ -15,7 +15,7 @@ unsigned short display_main_menu(){
 
   printf("\n\nChoose an algorithm \n");
   printf("%d - Dynamic Stack \n", OPT_STACK_MENU);
-  printf("%d - Dynamic circular Queue \n", OPT_QUEUE_MENU);
+  printf("%d - Circular Queue \n", OPT_QUEUE_MENU);
   printf("%d - Quit \n", OPT_QUIT);
 
   scanf("%hu", &temp_opt);

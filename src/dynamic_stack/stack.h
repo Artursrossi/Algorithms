@@ -24,15 +24,46 @@ typedef enum {
 } STACK_RES;
 
 /* Variables */
-extern unsigned short stack_elements;
+extern unsigned short stack_elements; // Number of elements in stack
 
 /* Functions prototypes */
 
+/**
+ * @brief Initialize dynamic variables, allocating an initial size for stack
+*/
 void stack_initialize();
+
+/**
+ * @brief Push element to the top of Stack
+ * 
+ * @param ch Character to be added
+*/
 STACK_RES stack_push(char ch);
+
+/**
+ * @brief Remove last entered element from stack (LIFO)
+ * 
+ * @param ch Character that will receive removed item value
+*/
 STACK_RES stack_pop(char *ch);
+
+/**
+ * @brief Clone stack elements to external variable
+ * 
+ * @param p_stack_clone Pointer of char vector that will receive stack elements
+*/
 STACK_RES stack_dump(char **p_stack_clone);
+
+/**
+ * @brief Free up the space allocated by the function stack_dump
+ * 
+ * @param p_stack_clone Pointer of char vector to be de-allocated
+*/
 STACK_RES stack_dump_free(char **p_stack_clone);
+
+/**
+ * @brief Free up the space allocated by the function stack_initialize
+*/
 void stack_free();
 
 #endif // STACK_H
