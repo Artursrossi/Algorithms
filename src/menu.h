@@ -28,12 +28,9 @@ enum {
 
 /* Functions prototypes */
 
-unsigned short display_main_menu();
-unsigned short display_stack_menu();
-unsigned short display_queue_menu();
-void handle_main_menu(unsigned short *opt);
-void handle_stack_menu(unsigned short *opt);
-void handle_queue_menu(unsigned short *opt);
+/**
+ * @brief Initialize menus flow
+*/
 void menu_initialize();
 
 #endif // MENU_H
