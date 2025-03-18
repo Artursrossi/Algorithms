@@ -9,7 +9,7 @@
 1. Command for compile
 
 ```sh
-❯ gcc src/circular_queue/queue.c src/main.c -o algorithms
+❯ gcc src/utils.c src/circular_queue/queue.c src/dynamic_stack/stack.c src/menu.c src/main.c -o algorithms
 ```
 
 2. Command for execute
