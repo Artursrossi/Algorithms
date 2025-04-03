@@ -9,6 +9,7 @@
 #include "utils.h"
 #include "dynamic_stack/stack.h"
 #include "circular_queue/queue.h"
+#include "sorting/bubble_sort.h"
 
 /* Variables */
 static unsigned short opt = 0;
@@ -17,6 +18,7 @@ static void display_main_menu(){
   printf("\n\nChoose an algorithm \n");
   printf("%d - Dynamic Stack \n", OPT_STACK_MENU);
   printf("%d - Circular Queue \n", OPT_QUEUE_MENU);
+  printf("%d - Test Bubble Sort \n", OPT_TEST_BUBBLE_SORT);
   printf("%d - Quit \n", OPT_QUIT);
 
   scanf("%hu", &opt);
@@ -206,6 +208,14 @@ static void handle_main_menu(){
       
       case OPT_QUEUE_MENU:
         handle_queue_menu();
+        break;
+
+      case OPT_TEST_BUBBLE_SORT:
+        int vec[20] = {99,105,75,34,87,22,6,8,7,245,690,11,230,111,144,132,3,55,1};
+        bubble_sort(vec, 20);
+        for(int i = 0; i < 20; i++){
+          printf(" %d", vec[i]);
+        }
         break;
     }
   }while(opt != OPT_QUIT);
