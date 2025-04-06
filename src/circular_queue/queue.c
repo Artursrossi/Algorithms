@@ -9,9 +9,9 @@
 #include "queue.h"
 
 /* Variables */
-static unsigned short queue_start = 0; // Always pointing to first valid element [0 <= queue_start < QUEUE_SIZE]
-static unsigned short queue_end = 0; // Always pointing to next element position [0 <= queue_end < QUEUE_SIZE]
-unsigned short queue_elements = 0;
+static uint16_t queue_start = 0; // Always pointing to first valid element [0 <= queue_start < QUEUE_SIZE]
+static uint16_t queue_end = 0; // Always pointing to next element position [0 <= queue_end < QUEUE_SIZE]
+uint16_t queue_elements = 0;
 static char queue[QUEUE_SIZE][QUEUE_STRING_LENGTH];
 
 bool queue_full(){
@@ -55,9 +55,9 @@ QUEUE_RES queue_dump(char ***p_queue_list){
   *p_queue_list = (char**) malloc(queue_elements * sizeof(char*));
   if(*p_queue_list == NULL) return QUEUE_RES_MEM_ALLOC_ERR;
 
-  unsigned short temp_start = queue_start;
+  uint16_t temp_start = queue_start;
 
-  for(int i = 0; i < queue_elements; i++){
+  for(uint16_t i = 0; i < queue_elements; i++){
     /* Allocate memory space (in BYTES) for each matrix column */
     (*p_queue_list)[i] = (char*) malloc(QUEUE_STRING_LENGTH * sizeof(char));
     if((*p_queue_list)[i] == NULL) return QUEUE_RES_MEM_ALLOC_ERR;
@@ -75,7 +75,7 @@ QUEUE_RES queue_dump_free(char ***p_queue_list){
   if(*p_queue_list == NULL) return QUEUE_RES_OK;
 
   /* Free up memory space for each matrix column */
-  for(int i = 0; i < queue_elements; i++){
+  for(uint16_t i = 0; i < queue_elements; i++){
     free((*p_queue_list)[i]);
   }
 

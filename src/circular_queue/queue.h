@@ -7,6 +7,7 @@
 #define CIRCULAR_QUEUE_H
 
 #include <stdbool.h>
+#include <stdint.h>
 #include <string.h>
 
 /* Constants */
@@ -23,7 +24,7 @@ typedef enum {
 } QUEUE_RES;
 
 /* Variables */
-extern unsigned short queue_elements; // Number of valid element in queue
+extern uint16_t queue_elements; // Number of valid element in queue
 
 /* Functions prototypes */
 

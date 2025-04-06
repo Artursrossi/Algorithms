@@ -4,6 +4,7 @@
 */
 
 #include <stdio.h>
+#include <stdint.h>
 
 #include "menu.h"
 #include "utils.h"
@@ -12,7 +13,7 @@
 #include "sorting/bubble_sort.h"
 
 /* Variables */
-static unsigned short opt = 0;
+static uint16_t opt = 0;
 
 static void display_main_menu(){
   printf("\n\nChoose an algorithm \n");
@@ -46,7 +47,7 @@ static void display_queue_menu(){
 
 static void handle_stack_menu(){
   STACK_RES stack_res;
-  const unsigned int STRING_SIZE = 64;
+  const uint32_t STRING_SIZE = 64;
 
   do{
     display_stack_menu();
@@ -73,7 +74,7 @@ static void handle_stack_menu(){
         if(stack_res != STACK_RES_OK) printf("A error has ocurred while listing stack items. \n");
 
         /* Display each element of stack */
-        for(int i = 0; i < stack_size(); i++){
+        for(uint32_t i = 0; i < stack_size(); i++){
           printf("Element %d: %s \n", (i+1), (char *) stack_clone[i]);
         }
 
@@ -167,7 +168,7 @@ static void handle_queue_menu(){
         }
 
         /* Display each element of queue */
-        for(int i = 0; i < queue_elements; i++){
+        for(uint32_t i = 0; i < queue_elements; i++){
           printf("Item: %s \n", p_queue_items[i]);
         }
 
@@ -227,11 +228,20 @@ static void handle_main_menu(){
         break;
 
       case OPT_TEST_BUBBLE_SORT:
-        int vec[20] = {99,105,75,34,87,22,6,8,7,245,690,11,230,111,144,132,3,55,1};
-        bubble_sort(vec, 20);
-        for(int i = 0; i < 20; i++){
+        int32_t vec[20] = {99,105,75,34,87,22,6,8,7,245,690,11,230,111,144,132,3,55,1};
+
+        printf("\n Original vector: ");
+        for(int32_t i = 0; i < 20; i++){
           printf(" %d", vec[i]);
         }
+
+        bubble_sort(vec, 20);
+
+        printf("\n Vector after applying bubble sort ascending algorithm: ");
+        for(int32_t i = 0; i < 20; i++){
+          printf(" %d", vec[i]);
+        }
+
         break;
     }
   }while(opt != OPT_QUIT);

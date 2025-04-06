@@ -3,12 +3,15 @@
 * Last modification date: 2025-04-06
 */
 
+#include <stdbool.h>
+#include <stdint.h>
+
 #include "stack.h"
 
 /* Variables */
 static void **stack = NULL;
-static unsigned int stack_position = 0;
-static unsigned int stack_max_size = 0;
+static uint32_t stack_position = 0;
+static uint32_t stack_max_size = 0;
 
 void stack_initialize(){
   if(stack != NULL) return;
@@ -21,7 +24,7 @@ void stack_initialize(){
 static bool stack_grow() {
   if(stack == NULL) return false;
 
-  unsigned int temp_max_size = stack_max_size + STACK_GROWTH_QNT;
+  uint32_t temp_max_size = stack_max_size + STACK_GROWTH_QNT;
 
   /* Increase memory space of stack, allocating more BYTES */
   stack = realloc(stack, temp_max_size * sizeof(void*));
@@ -32,7 +35,7 @@ static bool stack_grow() {
   return true;
 }
 
-unsigned int stack_size(){
+uint32_t stack_size(){
   return stack_position;
 }
 
@@ -79,7 +82,7 @@ STACK_RES stack_dump(void ***p_stack_clone){
   if((*p_stack_clone) == NULL) return STACK_RES_MEM_ALLOC_ERR;
 
   /* Clone stack elements to an external stack variable */
-  for(int i = 0; i < stack_position; i++){
+  for(uint32_t i = 0; i < stack_position; i++){
     (*p_stack_clone)[i] = stack[i];
   }
 
@@ -91,7 +94,7 @@ void stack_free(bool free_objects){
 
   /* Free up memory space for each stack object */
   if(free_objects){
-    for(int i = 0; i < stack_position; i++){
+    for(uint32_t i = 0; i < stack_position; i++){
       free(stack[i]);
       stack[i] = NULL;
     }

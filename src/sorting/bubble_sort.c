@@ -3,11 +3,13 @@
 * Last modification date: 2025-03-17
 */
 
-void bubble_sort(int *vec, int elements){
-  int temp = 0;
+#include <stdint.h>
 
-  for(int i = 0; i < (elements - 1); i++){
-    for(int j = (i + 1); j < elements; j++){
+void bubble_sort(int32_t *vec, int elements){
+  int32_t temp = 0;
+
+  for(int32_t i = 0; i < (elements - 1); i++){
+    for(int32_t j = (i + 1); j < elements; j++){
       if(vec[i] > vec[j]){
         temp = vec[i];
         vec[i] = vec[j];

@@ -6,9 +6,10 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include <stdbool.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 /* Constants */
 enum {
@@ -35,7 +36,7 @@ void stack_initialize();
  * 
  * @return Number of elements in stack
 */
-unsigned int stack_size();
+uint32_t stack_size();
 
 /**
  * @brief Push an object to the top of Stack
