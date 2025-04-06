@@ -1,6 +1,6 @@
 /**
 * Author: Artur Schincariol Rossi <schincariolartur@gmail.com>
-* Last modification date: 2025-03-17
+* Last modification date: 2025-04-06
 */
 
 #ifndef STACK_H
@@ -23,9 +23,6 @@ typedef enum {
   STACK_NOT_INITIALIZED
 } STACK_RES;
 
-/* Variables */
-extern unsigned short stack_elements; // Number of elements in stack
-
 /* Functions prototypes */
 
 /**
@@ -34,36 +31,38 @@ extern unsigned short stack_elements; // Number of elements in stack
 void stack_initialize();
 
 /**
- * @brief Push element to the top of Stack
+ * @brief Returns the number of elements in stack, avoiding overlapping the value of stack_position
  * 
- * @param ch Character to be added
+ * @return Number of elements in stack
 */
-STACK_RES stack_push(char ch);
+unsigned int stack_size();
 
 /**
- * @brief Remove last entered element from stack (LIFO)
+ * @brief Push an object to the top of Stack
  * 
- * @param ch Character that will receive removed item value
+ * @param obj Pointer of the object to be pushed
 */
-STACK_RES stack_pop(char *ch);
+STACK_RES stack_push(void *obj);
 
 /**
- * @brief Clone stack elements to external variable
+ * @brief Remove last entered object from stack (LIFO)
  * 
- * @param p_stack_clone Pointer of char vector that will receive stack elements
+ * @param obj Pointer of variable that will receive popped object pointer
 */
-STACK_RES stack_dump(char **p_stack_clone);
+STACK_RES stack_pop(void **obj);
 
 /**
- * @brief Free up the space allocated by the function stack_dump
+ * @brief Clone stack objects to an external variable
  * 
- * @param p_stack_clone Pointer of char vector to be de-allocated
+ * @param p_stack_clone Pointer of variable that will receive object pointers
 */
-STACK_RES stack_dump_free(char **p_stack_clone);
+STACK_RES stack_dump(void ***p_stack_clone);
 
 /**
  * @brief Free up the space allocated by the function stack_initialize
+ * 
+ * @param free_objects If true, free up each object of stack, otherwise, free up only the stack (In second case, you're responsible for free up each object)
 */
-void stack_free();
+void stack_free(bool free_objects);
 
 #endif // STACK_H

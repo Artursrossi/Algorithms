@@ -1,6 +1,6 @@
 /**
 * Author: Artur Schincariol Rossi <schincariolartur@gmail.com>
-* Date: 2025-03-17
+* Last modification date: 2025-04-06
 */
 
 #include "menu.h"
@@ -12,7 +12,7 @@ int main(int argc, char * argv[]){
 
   menu_initialize();
 
-  stack_free();
+  stack_free(true);
 
   return 0;
 }

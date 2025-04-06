@@ -1,6 +1,6 @@
 /**
 * Author: Artur Schincariol Rossi <schincariolartur@gmail.com>
-* Last modification date: 2025-03-17
+* Last modification date: 2025-04-06
 */
 
 #include <stdio.h>
@@ -46,15 +46,16 @@ static void display_queue_menu(){
 
 static void handle_stack_menu(){
   STACK_RES stack_res;
+  const unsigned int STRING_SIZE = 64;
 
   do{
     display_stack_menu();
 
     switch(opt){
       case OPT_STACK_VIEW:
-        char *stack_clone = NULL;
+        char **stack_clone = NULL;
 
-        stack_res = stack_dump(&stack_clone);
+        stack_res = stack_dump((void ***) &stack_clone);
 
         /* Catch exceptions  */
         if(stack_res == STACK_NOT_INITIALIZED){
@@ -72,22 +73,30 @@ static void handle_stack_menu(){
         if(stack_res != STACK_RES_OK) printf("A error has ocurred while listing stack items. \n");
 
         /* Display each element of stack */
-        for(int i = 0; i < stack_elements; i++){
-          printf("Item: %c \n", stack_clone[i]);
+        for(int i = 0; i < stack_size(); i++){
+          printf("Element %d: %s \n", (i+1), (char *) stack_clone[i]);
         }
 
-        stack_dump_free(&stack_clone);
+        free(stack_clone);
+        stack_clone = NULL;
 
         break;
       case OPT_STACK_PUSH:
-        char ch;
+        char *str = (char *) malloc(STRING_SIZE * sizeof(char));
 
         /* Get user input */
-        printf("Digit a character to add: \n");
+        printf("Digit a text to be added to stack: \n");
         clear_buffer();
-        ch = getchar();
+        fgets(str, STRING_SIZE, stdin);
+        str[strcspn(str, "\n")] = '\0'; /* Remove newline (Enter) from stdin */
 
-        stack_res = stack_push(ch);
+        /* Prevent NULL pointer from fgets() */
+        if(str == NULL){
+          printf("A memory allocation error has ocurred. \n");
+          break;
+        }
+
+        stack_res = stack_push(str);
 
         /* Catch exceptions  */
         if(stack_res == STACK_NOT_INITIALIZED){
@@ -98,13 +107,13 @@ static void handle_stack_menu(){
           printf("A memory allocation error has ocurred. \n");
           break;
         }
-        if(stack_res != STACK_RES_OK) printf("A error has ocurred while adding stack item. \n");
+        if(stack_res != STACK_RES_OK) printf("A error has ocurred while adding stack element. \n");
 
         break;
       case OPT_STACK_POP:
-        char removed_ch;
+        char *removed_str = NULL;
 
-        stack_res = stack_pop(&removed_ch);
+        stack_res = stack_pop((void**) &removed_str);
 
         /* Catch exceptions  */
         if(stack_res == STACK_NOT_INITIALIZED){
@@ -115,9 +124,16 @@ static void handle_stack_menu(){
           printf("Stack is empty. \n");
           break;
         }
-        if(stack_res != STACK_RES_OK) printf("A error has ocurred while removing stack item. \n");
+        if(stack_res != STACK_RES_OK) printf("A error has ocurred while removing stack element. \n");
 
-        printf("Removed item: %c \n", removed_ch);
+        if(removed_str != NULL){
+          /* Print removed stack element */
+          printf("Removed element: %s \n", removed_str);
+  
+          /* Free up temp removed_str variable*/
+          free(removed_str);
+          removed_str = NULL;
+        }
 
         break;
     }
