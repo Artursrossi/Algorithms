@@ -8,11 +8,11 @@
 #include "circular_queue/queue.h"
 
 int main(int argc, char * argv[]){
-  stack_initialize();
+  stack_init();
 
   menu_initialize();
 
-  stack_free(true);
+  stack_destroy(true);
 
   return 0;
 }

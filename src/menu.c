@@ -67,10 +67,6 @@ static void handle_stack_menu(){
           printf("Stack is empty. \n");
           break;
         }
-        if(stack_res == STACK_RES_MEM_ALLOC_ERR){
-          printf("A memory allocation error has ocurred. \n");
-          break;
-        }
         if(stack_res != STACK_RES_OK) printf("A error has ocurred while listing stack items. \n");
 
         /* Display each element of stack */
@@ -102,10 +98,6 @@ static void handle_stack_menu(){
         /* Catch exceptions  */
         if(stack_res == STACK_NOT_INITIALIZED){
           printf("Stack not initialized. \n");
-          break;
-        }
-        if(stack_res == STACK_RES_MEM_ALLOC_ERR){
-          printf("A memory allocation error has ocurred. \n");
           break;
         }
         if(stack_res != STACK_RES_OK) printf("A error has ocurred while adding stack element. \n");
