@@ -2,6 +2,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -I./src
 MEMORY_FLAGS = -fsanitize=address -g -fno-omit-frame-pointer
+DEPFLAGS = -MMD -MP
 
 # Directories
 SRC_DIR := src
@@ -13,6 +14,7 @@ MEMORY_TARGET := memory-test
 SRCS := $(shell find $(SRC_DIR) -name '*.c')
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 MEMORY_OBJS := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.mem.o, $(SRCS))
+DEPS := $(OBJS:.o=.d) $(MEMORY_OBJS:.mem.o=.d)
 
 # Default rule
 all: $(TARGET)
@@ -27,7 +29,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
   # Create the necessary directory structure inside build/ if it doesn't exist
 	@mkdir -p $(dir $@)
   # Compile the .c file into a .o file
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
 # Memory test build
 memory-test: $(MEMORY_TARGET)
@@ -44,10 +46,13 @@ $(BUILD_DIR)/%.mem.o: $(SRC_DIR)/%.c
   # Create the necessary directory structure inside build/ if it doesn't exist
 	@mkdir -p $(dir $@)
   # Compile the .c file with AddressSanitizer and debug flags into a .mem.o file
-	$(CC) $(CFLAGS) $(MEMORY_FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(MEMORY_FLAGS) $(DEPFLAGS) -c $< -o $@
 
 # Clean up build artifacts
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET) $(MEMORY_TARGET)
 
 .PHONY: all clean memory-test
+
+# Include dependency files if they exist
+-include $(DEPS)
