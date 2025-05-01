@@ -5,7 +5,7 @@
 
 #include <stdint.h>
 
-void bubble_sort(int32_t *vec, int elements){
+void bubble_sort(int32_t *vec, int32_t elements){
   int32_t temp = 0;
 
   for(int32_t i = 0; i < (elements - 1); i++){

@@ -13,6 +13,6 @@
 /**
  * @brief Sort vector of integers in ascending order
 */
-void bubble_sort(int32_t *vec, int elements);
+void bubble_sort(int32_t *vec, int32_t elements);
 
 #endif // BUBBLE_SORT_H

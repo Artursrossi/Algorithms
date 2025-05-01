@@ -10,6 +10,7 @@
 enum{
   OPT_STACK_MENU = 1,
   OPT_QUEUE_MENU,
+  OPT_ARRAY_LIST,
   OPT_BUBBLE_SORT,
   OPT_QUIT
 };
@@ -19,6 +20,6 @@ enum{
 /**
  * @brief Initialize menus flow
 */
-void menu_initialize();
+void menu_init();
 
 #endif // MENU_H

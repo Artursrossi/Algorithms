@@ -4,8 +4,9 @@
 */
 
 #include <stdio.h>
-#include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 #include "dynamic_stack_menu.h"
 #include "data_structures/dynamic_stack/stack.h"

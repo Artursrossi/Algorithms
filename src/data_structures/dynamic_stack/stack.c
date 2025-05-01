@@ -3,8 +3,8 @@
 * Last modification date: 2025-04-06
 */
 
-#include <stdbool.h>
-#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "stack.h"
 
