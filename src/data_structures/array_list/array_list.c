@@ -1,6 +1,5 @@
 /**
 * Author: Artur Schincariol Rossi <schincariolartur@gmail.com>
-* Last modification date: 2025-05-01
 */
 
 #include <stdio.h>
@@ -53,7 +52,7 @@ ARRAY_RES array_dump(int32_t **p_array_dump){
       exit(EXIT_FAILURE);
     }
   
-    /* Clone array elements to an external array list variable */
+    /* Clone each elements of list to an external array list variable */
     for(int32_t i = 0; i < array_position; i++){
       (*p_array_dump)[i] = array[i];
     }
@@ -81,6 +80,7 @@ int32_t array_length() {
 int32_t array_find(int32_t value){
     if(array == NULL || array_empty()) return -1;
 
+    /* Search for value */
     for(int32_t i = 0; i < array_position; i++){
         if(array[i] == value) return i;
     }
@@ -92,6 +92,7 @@ ARRAY_RES array_get(int32_t index, int32_t *getted_value){
     if(array == NULL) return ARRAY_RES_NOT_INITIALIZED;
     if(array_empty()) return ARRAY_RES_EMPTY;
 
+    /* Verify if the index is valid (do not accept negative or higher than actual list) */
     if(index >= array_position || index < 0) return ARRAY_RES_NOT_FOUND;
 
     *getted_value = array[index];
@@ -116,7 +117,6 @@ ARRAY_RES array_pop(int32_t *removed_value) {
     if(array_empty()) return ARRAY_RES_EMPTY;
 
     *removed_value = array[array_position - 1];
-
     array_position--;
 
     return ARRAY_RES_OK;
@@ -141,21 +141,24 @@ ARRAY_RES array_remove(int32_t value) {
     return ARRAY_RES_OK;
 }
 
-ARRAY_RES array_set(int32_t index, int32_t value){
+ARRAY_RES array_set(int32_t index, int32_t new_value){
     if(array == NULL) return ARRAY_RES_NOT_INITIALIZED;
     if(array_empty()) return ARRAY_RES_EMPTY;
 
+    /* Verify if the index is valid (do not accept negative or higher than actual list) */
     if(index >= array_position || index < 0) return ARRAY_RES_NOT_FOUND;
 
-    array[index] = value;
+    array[index] = new_value;
 
     return ARRAY_RES_OK;
 }
 
+/* Native qsort function order by asc */
 static int sort_compar_asc(const void *a, const void *b){
     return (*(int32_t*)a - *(int32_t*)b);
 }
 
+/* Native qsort function order by desc */
 static int sort_compar_desc(const void *a, const void *b){
     return (*(int32_t*)b - *(int32_t*)a);
 }
@@ -165,6 +168,7 @@ ARRAY_RES array_sort(bool is_asc) {
     if(array_empty()) return ARRAY_RES_EMPTY;
     if(array_position == 1) return ARRAY_RES_OK;
 
+    /* Switch between ASC and DESC functions */
     __compar_fn_t compar_fn = is_asc ? sort_compar_asc : sort_compar_desc;
 
     qsort(array, array_position, sizeof(int32_t), compar_fn);

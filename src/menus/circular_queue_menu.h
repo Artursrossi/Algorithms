@@ -1,6 +1,5 @@
 /**
 * Author: Artur Schincariol Rossi <schincariolartur@gmail.com>
-* Last modification date: 2025-05-01
 */
 
 #ifndef CIRCULAR_QUEUE_MENU_H

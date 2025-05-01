@@ -1,6 +1,5 @@
 /**
 * Author: Artur Schincariol Rossi <schincariolartur@gmail.com>
-* Last modification date: 2025-03-17
 */
 
 #include <stdio.h>
