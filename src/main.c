@@ -1,13 +1,13 @@
 /**
 * Author: Artur Schincariol Rossi <schincariolartur@gmail.com>
-* Last modification date: 2025-04-06
+* Last modification date: 2025-05-01
 */
 
-#include "menu.h"
-#include "dynamic_stack/stack.h"
-#include "circular_queue/queue.h"
+#include "menus/menu.h"
+#include "data_structures/dynamic_stack/stack.h"
+#include "data_structures/circular_queue/queue.h"
 
-int main(int argc, char * argv[]){
+int main(){
   stack_init();
 
   menu_initialize();

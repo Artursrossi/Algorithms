@@ -6,8 +6,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <stdio.h>
-
 /* Constants */
 enum{
   OPT_RETURN_MAIN_MENU,

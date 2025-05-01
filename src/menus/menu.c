@@ -8,8 +8,8 @@
 
 #include "menu.h"
 #include "utils.h"
-#include "dynamic_stack/stack.h"
-#include "circular_queue/queue.h"
+#include "data_structures/dynamic_stack/stack.h"
+#include "data_structures/circular_queue/queue.h"
 #include "sorting/bubble_sort.h"
 
 /* Variables */
