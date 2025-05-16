@@ -6,6 +6,7 @@
 #include "data_structures/dynamic_stack/stack.h"
 #include "data_structures/circular_queue/queue.h"
 #include "data_structures/array_list/array_list.h"
+#include "data_structures/linked_list/linked_list.h"
 
 int main(){
   stack_init();
@@ -15,6 +16,7 @@ int main(){
   
   stack_destroy(true);
   array_destroy();
+  linked_list_destroy();
 
   return 0;
 }
