@@ -2,8 +2,8 @@
 * Author: Artur Schincariol Rossi <schincariolartur@gmail.com>
 */
 
-#ifndef BUBBLE_SORT_H
-#define BUBBLE_SORT_H
+#ifndef SELECTION_SORT_H
+#define SELECTION_SORT_H
 
 #include <stdint.h>
 
@@ -12,6 +12,6 @@
 /**
  * @brief Sort vector of integers in ascending order
 */
-void bubble_sort(int32_t *vec, int32_t vec_length);
+void selection_sort(int32_t *vec, int32_t vec_length);
 
-#endif // BUBBLE_SORT_H
+#endif // SELECTION_SORT_H
