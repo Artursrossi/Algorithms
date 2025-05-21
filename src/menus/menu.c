@@ -11,6 +11,7 @@
 #include "circular_queue_menu.h"
 #include "array_list_menu.h"
 #include "linked_list_menu.h"
+#include "sorting/test_sorting_algorithm.h"
 #include "sorting/bubble_sort.h"
 #include "sorting/selection_sort.h"
 #include "sorting/insertion_sort.h"
@@ -53,54 +54,15 @@ static void handle_main_menu(){
         break;
 
       case OPT_BUBBLE_SORT:
-        int32_t vec[20] = {99,105,75,34,87,22,6,8,7,245,690,11,230,111,144,132,3,55,1};
-
-        printf("\n Original vector: ");
-        for(int32_t i = 0; i < 20; i++){
-          printf(" %d", vec[i]);
-        }
-
-        bubble_sort(vec, 20);
-
-        printf("\n Vector after applying bubble sort ascending algorithm: ");
-        for(int32_t i = 0; i < 20; i++){
-          printf(" %d", vec[i]);
-        }
-
+        test_sorting_algorithm(bubble_sort);
         break;
 
       case OPT_SELECTION_SORT:
-        int32_t vec_selection_sort[20] = {99,105,75,34,87,22,6,8,7,245,690,11,230,111,144,132,3,55,1};
-
-        printf("\n Original vector: ");
-        for(int32_t i = 0; i < 20; i++){
-          printf(" %d", vec_selection_sort[i]);
-        }
-
-        selection_sort(vec_selection_sort, 20);
-
-        printf("\n Vector after applying selection sort ascending algorithm: ");
-        for(int32_t i = 0; i < 20; i++){
-          printf(" %d", vec_selection_sort[i]);
-        }
-
+        test_sorting_algorithm(selection_sort);
         break;
 
       case OPT_INSERTION_SORT:
-        int32_t vec_insertion_sort[20] = {99,105,75,34,87,22,6,8,7,245,690,11,230,111,144,132,3,55,1};
-
-        printf("\n Original vector: ");
-        for(int32_t i = 0; i < 20; i++){
-          printf(" %d", vec_insertion_sort[i]);
-        }
-
-        insertion_sort(vec_insertion_sort, 20);
-
-        printf("\n Vector after applying insertion sort ascending algorithm: ");
-        for(int32_t i = 0; i < 20; i++){
-          printf(" %d", vec_insertion_sort[i]);
-        }
-
+        test_sorting_algorithm(insertion_sort);
         break;
     }
   }while(opt != OPT_QUIT);
