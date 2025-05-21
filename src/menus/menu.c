@@ -13,6 +13,7 @@
 #include "linked_list_menu.h"
 #include "sorting/bubble_sort.h"
 #include "sorting/selection_sort.h"
+#include "sorting/insertion_sort.h"
 
 static void display_main_menu(uint16_t *opt){
   printf("\n\nChoose an algorithm \n");
@@ -22,6 +23,7 @@ static void display_main_menu(uint16_t *opt){
   printf("%d - Linked List \n", OPT_LINKED_LIST);
   printf("%d - Bubble Sort \n", OPT_BUBBLE_SORT);
   printf("%d - Selection Sort \n", OPT_SELECTION_SORT);
+  printf("%d - Insertion Sort \n", OPT_INSERTION_SORT);
   printf("%d - Quit \n", OPT_QUIT);
 
   scanf("%hu", opt);
@@ -80,6 +82,23 @@ static void handle_main_menu(){
         printf("\n Vector after applying selection sort ascending algorithm: ");
         for(int32_t i = 0; i < 20; i++){
           printf(" %d", vec_selection_sort[i]);
+        }
+
+        break;
+
+      case OPT_INSERTION_SORT:
+        int32_t vec_insertion_sort[20] = {99,105,75,34,87,22,6,8,7,245,690,11,230,111,144,132,3,55,1};
+
+        printf("\n Original vector: ");
+        for(int32_t i = 0; i < 20; i++){
+          printf(" %d", vec_insertion_sort[i]);
+        }
+
+        insertion_sort(vec_insertion_sort, 20);
+
+        printf("\n Vector after applying insertion sort ascending algorithm: ");
+        for(int32_t i = 0; i < 20; i++){
+          printf(" %d", vec_insertion_sort[i]);
         }
 
         break;
