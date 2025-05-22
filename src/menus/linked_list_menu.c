@@ -24,7 +24,7 @@ static void display_linked_list_menu(uint16_t *opt){
   scanf("%hu", opt);
 }
 
-void print_fnc(int32_t data) {
+void linked_list_print_fnc(int32_t data) {
   printf("Data: %d \n", data);
 }
 
@@ -36,7 +36,7 @@ void handle_linked_list_menu(){
 
     switch(opt){
       case OPT_LINKED_LIST_VIEW:
-        linked_list_iteration(print_fnc);
+        linked_list_iteration(linked_list_print_fnc);
 
         break;
 
