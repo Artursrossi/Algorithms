@@ -58,6 +58,10 @@ void handle_stack_menu(){
         break;
       case OPT_STACK_PUSH:
         char *str = (char *) malloc(STRING_SIZE * sizeof(char));
+        if(str == NULL){
+          perror("A memory allocation error has occurred. (dynamic_stack_menu.c) \n");
+          exit(EXIT_FAILURE);
+        }
 
         /* Get user input */
         printf("Digit a text to be added to stack: \n");

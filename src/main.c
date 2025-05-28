@@ -16,11 +16,13 @@ int main(){
   srand(time(NULL));
 
   stack_init();
+  queue_init();
   array_init();
   
   menu_init();
   
   stack_destroy(true);
+  queue_destroy(true);
   array_destroy();
   linked_list_destroy();
   doubly_linked_destroy();

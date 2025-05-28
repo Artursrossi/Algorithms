@@ -10,21 +10,35 @@
 
 /* Constants */
 enum {
-  QUEUE_SIZE = 5,
-  QUEUE_STRING_LENGTH = 31
+  QUEUE_SIZE = 5
 };
 typedef enum {
   QUEUE_RES_OK,
   QUEUE_RES_FULL,
   QUEUE_RES_EMPTY,
-  QUEUE_RES_MEM_ALLOC_ERR,
-  QUEUE_RES_GENERIC_ERR
+  QUEUE_NOT_INITIALIZED
 } QUEUE_RES;
 
-/* Variables */
-extern uint16_t queue_elements; // Number of valid element in queue
-
 /* Functions prototypes */
+
+/**
+ * @brief Initialize dynamic variables, allocating an initial size for queue
+*/
+void queue_init();
+
+/**
+ * @brief Free up the space allocated by the function queue_init
+ * 
+ * @param free_objects If true, free up each object of queue, otherwise, free up only the queue (In second case, you're responsible for free up each object)
+*/
+void queue_destroy(bool free_objects);
+
+/**
+ * @brief Returns the number of elements in queue, avoiding overlapping the internal value
+ * 
+ * @return Number of objects in queue
+*/
+uint32_t queue_length();
 
 /**
  * @return Boolean indicating if queue is full
@@ -37,31 +51,24 @@ bool queue_full();
 bool queue_empty();
 
 /**
- * @brief Add element to queue
+ * @brief Add an object to the end of queue (FIFO)
  * 
- * @param str String to be added
+ * @param obj Object to be added
 */
-QUEUE_RES queue_add(char *str);
+QUEUE_RES queue_add(void *obj);
 
 /**
  * @brief Remove first entered element from queue (FIFO)
  * 
- * @param str String that will receive removed item value
+ * @param obj Pointer of a variable that will receive removed object
 */
-QUEUE_RES queue_remove(char *str);
+QUEUE_RES queue_remove(void **obj);
 
 /**
- * @brief Clone queue valid items to external matrix
+ * @brief Clone queue valid items to an external variable
  * 
- * @param p_queue_list Pointer of matrix that will receive queue items
+ * @param p_queue_list Pointer of variable that will receive queue objects
 */
-QUEUE_RES queue_dump(char ***p_queue_list);
-
-/**
- * @brief Free up the space allocated by the function queue_dump
- * 
- * @param p_queue_list Pointer of matrix to be de-allocated
-*/
-QUEUE_RES queue_dump_free(char ***p_queue_list);
+QUEUE_RES queue_dump(void ***p_queue_list);
 
 #endif // CIRCULAR_QUEUE_H

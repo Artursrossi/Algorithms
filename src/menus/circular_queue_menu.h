@@ -8,9 +8,13 @@
 /* Constants */
 enum {
   OPT_QUEUE_VIEW = 1,
+  OPT_QUEUE_LENGTH,
   OPT_QUEUE_ADD,
   OPT_QUEUE_REMOVE,
   OPT_QUEUE_RETURN_MAIN_MENU
+};
+enum {
+  QUEUE_STRING_LENGTH = 32
 };
 
 /* Functions prototypes */
