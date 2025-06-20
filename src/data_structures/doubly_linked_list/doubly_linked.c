@@ -8,11 +8,11 @@
 #include "doubly_linked.h"
 
 /* Variables */
-static doubly_node_t *head = NULL;
+static dl_node_t *head = NULL;
 static int32_t length = 0;
 
 /* Free up memory space for each Node of doubly linked list, using recursively function for preventing memory leak */
-static void recursive_free(doubly_node_t *node){
+static void recursive_free(dl_node_t *node){
   if (node->next != NULL) recursive_free(node->next);
   
   /* Free up memory space for each Node */
@@ -26,9 +26,9 @@ void doubly_linked_destroy(){
   head = NULL;
 }
 
-static doubly_node_t * create_node(int32_t data){
+static dl_node_t * create_node(int32_t data){
   /* Allocate memory space (in BYTES) for a Node of doubly linked list */
-  doubly_node_t *node = (doubly_node_t *) malloc(sizeof(doubly_node_t));
+  dl_node_t *node = (dl_node_t *) malloc(sizeof(dl_node_t));
   if(node == NULL){
     perror("A memory allocation error has occurred. (doubly_linked.c) \n");
     exit(EXIT_FAILURE);
@@ -42,7 +42,7 @@ static doubly_node_t * create_node(int32_t data){
 }
 
 void doubly_linked_insert(int32_t data){
-  doubly_node_t *new_node = create_node(data);
+  dl_node_t *new_node = create_node(data);
   length++;
 
   /* First element of doubly linked list */
@@ -60,7 +60,7 @@ void doubly_linked_insert(int32_t data){
   }
 
   /* Temp iteration variables */
-  doubly_node_t *aux = head;
+  dl_node_t *aux = head;
 
   /* Move iteration pointers */
   while(new_node->data >= aux->data && aux->next != NULL){
@@ -87,7 +87,7 @@ bool doubly_linked_remove(int32_t data){
   if(head == NULL) return false;
   
   /* Temp iteration variables */
-  doubly_node_t *aux = head;
+  dl_node_t *aux = head;
 
   /* Delete first element */
   if(head->data == data){
@@ -130,7 +130,7 @@ bool doubly_linked_remove(int32_t data){
 void doubly_linked_iteration(void (*iteration_fnc)(int32_t)){
   if(head == NULL) return;
 
-  doubly_node_t *aux = head;
+  dl_node_t *aux = head;
 
   /* Execute generic received function for each element of doubly linked list */
   while(aux != NULL){
@@ -146,7 +146,7 @@ int32_t doubly_linked_length(){
 }
 
 void doubly_linked_reverse(){
-  doubly_node_t *aux = head, *temp = NULL;
+  dl_node_t *aux = head, *temp = NULL;
 
   while(aux != NULL){    
     /* Swap next/previous */

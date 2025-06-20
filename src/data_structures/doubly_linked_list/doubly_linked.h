@@ -9,12 +9,12 @@
 #include <stdint.h>
 
 /* Constants */
-struct Doubly_Node {
+struct DL_Node {
   int32_t data;
-  struct Doubly_Node *next;
-  struct Doubly_Node *prev;
+  struct DL_Node *next;
+  struct DL_Node *prev;
 };
-typedef struct Doubly_Node doubly_node_t;
+typedef struct DL_Node dl_node_t;
 
 /* Functions prototypes */
 
