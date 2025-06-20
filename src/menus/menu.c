@@ -12,6 +12,7 @@
 #include "array_list_menu.h"
 #include "linked_list_menu.h"
 #include "doubly_linked_menu.h"
+#include "binary_tree_menu.h"
 #include "sorting/test_sorting_algorithm.h"
 #include "sorting/bubble_sort.h"
 #include "sorting/selection_sort.h"
@@ -24,6 +25,7 @@ static void display_main_menu(uint16_t *opt){
   printf("%d - Array List \n", OPT_ARRAY_LIST);
   printf("%d - Linked List \n", OPT_LINKED_LIST);
   printf("%d - Doubly Linked List \n", OPT_DOUBLY_LINKED);
+  printf("%d - Binary tree \n", OPT_BINARY_TREE);
   printf("%d - Bubble Sort \n", OPT_BUBBLE_SORT);
   printf("%d - Selection Sort \n", OPT_SELECTION_SORT);
   printf("%d - Insertion Sort \n", OPT_INSERTION_SORT);
@@ -57,6 +59,10 @@ static void handle_main_menu(){
 
       case OPT_DOUBLY_LINKED:
         handle_doubly_linked_menu();
+        break;
+
+      case OPT_BINARY_TREE:
+        handle_binary_tree_menu();
         break;
 
       case OPT_BUBBLE_SORT:
