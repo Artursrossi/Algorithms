@@ -9,11 +9,11 @@
 #include <stdint.h>
 
 /* Constants */
-struct Node {
+struct LL_Node {
   int32_t data;
-  struct Node *next;
+  struct LL_Node *next;
 };
-typedef struct Node node_t;
+typedef struct LL_Node ll_node_t;
 
 /* Functions prototypes */
 

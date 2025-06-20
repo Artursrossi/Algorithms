@@ -8,11 +8,11 @@
 #include "linked_list.h"
 
 /* Variables */
-static node_t *head = NULL;
+static ll_node_t *head = NULL;
 static int32_t length = 0;
 
 /* Free up memory space for each Node of linked list, using recursively function for preventing memory leak */
-static void recursive_free(node_t *node){
+static void recursive_free(ll_node_t *node){
   if (node->next != NULL) recursive_free(node->next);
   
   /* Free up memory space for each Node */
@@ -26,9 +26,9 @@ void linked_list_destroy(){
   head = NULL;
 }
 
-static node_t * create_node(int32_t data){
+static ll_node_t * create_node(int32_t data){
   /* Allocate memory space (in BYTES) for a Node of linked list */
-  node_t *node = (node_t *) malloc(sizeof(node_t));
+  ll_node_t *node = (ll_node_t *) malloc(sizeof(ll_node_t));
   if(node == NULL){
     perror("A memory allocation error has occurred. (linked_list.c) \n");
     exit(EXIT_FAILURE);
@@ -41,7 +41,7 @@ static node_t * create_node(int32_t data){
 }
 
 void linked_list_insert(int32_t data){
-  node_t *new_node = create_node(data);
+  ll_node_t *new_node = create_node(data);
   length++;
 
   /* First element of linked list */
@@ -58,8 +58,8 @@ void linked_list_insert(int32_t data){
   }
 
   /* Temp iteration variables */
-  node_t *aux = head;
-  node_t *aux_prev = NULL;
+  ll_node_t *aux = head;
+  ll_node_t *aux_prev = NULL;
 
   /* Move iteration pointers */
   while(new_node->data >= aux->data && aux->next != NULL){
@@ -84,8 +84,8 @@ bool linked_list_remove(int32_t data){
   if(head == NULL) return false;
   
   /* Temp iteration variables */
-  node_t *aux = head;
-  node_t *aux_prev = NULL;
+  ll_node_t *aux = head;
+  ll_node_t *aux_prev = NULL;
 
   /* Delete first element */
   if(head->data == data){
@@ -122,7 +122,7 @@ bool linked_list_remove(int32_t data){
 void linked_list_iteration(void (*iteration_fnc)(int32_t)){
   if(head == NULL) return;
 
-  node_t *aux = head;
+  ll_node_t *aux = head;
 
   /* Execute generic received function for each element of linked list */
   while(aux != NULL){
@@ -138,7 +138,7 @@ int32_t linked_list_length(){
 }
 
 void linked_list_reverse(){
-  node_t *aux_prev = NULL, *aux = head, *aux_next = NULL;
+  ll_node_t *aux_prev = NULL, *aux = head, *aux_next = NULL;
 
   while(aux != NULL){
     aux_next = aux->next;
